@@ -1,0 +1,21 @@
+[package]
+name = "port-outbound-tester"
+version = "0.1.2"
+edition = "2021"
+
+[dependencies]
+ansi-escapes = "0.2.0"
+ansi_term = "0.12.1"
+clap = { version="4.5.8", features=["derive"] }
+futures = "0.3.30"
+reqwest = "0.12.5"
+termsize = "0.1.8"
+tokio = { version="1.38.0", features=["full"] }
+
+
+[target.'cfg(unix)'.dependencies]
+openssl = { version = "0.10.64", features = ["vendored"] }
+
+[target.'cfg(windows)'.build-dependencies]
+static_vcruntime = "2.0.0"
+winres = "0.1.12"
