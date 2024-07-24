@@ -1,9 +1,9 @@
-# port-outbound-tester
+# outbound-port-tester
  Local NAT outbound port open status tester
 
 ## How to use
-`port-outbound-tester -h` or
-`port-outbound-tester --help`
+`outbound-port-tester -h` or
+`outbound-port-tester --help`
 
 ## Build Requirements
 - upx, zip

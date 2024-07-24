@@ -15,7 +15,7 @@ use clap::{ Parser };
 
 
 #[derive(Parser, Debug)]
-#[command(name = "Port Outbound Tester")]
+#[command(name = "Outbound Port Tester")]
 #[command(version = "v0.1.2")]
 #[command(author = "ParkSnoopy")]
 #[command(
