@@ -1,6 +1,6 @@
 use ansi_escapes;
+use nu_ansi_term::{ Color };
 use termsize;
-use ansi_term::{ Color };
 use std::fmt::{ Debug };
 
 use futures::{ stream, StreamExt };
@@ -156,7 +156,7 @@ async fn main() {
 fn init() {
     #[cfg(target_family = "windows")]
     {
-        use ansi_term::enable_ansi_support;
+        use nu_ansi_term::enable_ansi_support;
         let _enabled = enable_ansi_support();
     }
     print!("{}\n\n{}",
@@ -165,6 +165,7 @@ fn init() {
         ansi_escapes::CursorSavePosition,
     );
 }
+
 fn cleanup() {
     print!("\n\n", 
         //ansi_escapes::CursorShow
@@ -186,15 +187,16 @@ fn get_urls(args: &Args) -> Vec<(u64, String)> {
 }
 
 fn print_progress(done:usize, total:usize) {
-    let ansi_escape_init = format!("{}",
-        ansi_escapes::CursorRestorePosition,
-    );
     let prebuilt = Color::Cyan.paint(
-        format!("{} ({}/{})", ansi_escape_init, done, total)
+        format!("{}{} ({}/{})", 
+            ansi_escapes::CursorRestorePosition,
+            ansi_escapes::CursorSavePosition,
+            done, total,
+        )
     );
     println!("{} [ {} ]", 
         prebuilt, 
-        Color::Fixed(118).paint( progress_to_bar(done, total, prebuilt.len()) ),
+        Color::Fixed(118).paint( progress_to_bar(done, total, prebuilt.as_str().len()) ),
     );
 }
 

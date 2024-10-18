@@ -4,15 +4,13 @@ version = "0.1.2"
 edition = "2021"
 
 [dependencies]
-clap = { version="4.5.17", features=["derive"] }
-futures = "0.3.30"
-reqwest = "0.12.7"
+clap = { version="4.5.20", features=["derive"] }
+futures = "0.3.31"
+reqwest = "0.12.8"
 termsize = "0.1.9"
 tokio = { version="1.40.0", features=["full"] }
+nu-ansi-term = "0.50.1"
+ansi-escapes = "0.2.0"
 
 [target.'cfg(unix)'.dependencies]
-openssl = { version = "0.10.66", features = ["vendored"] }
-
-[target.'cfg(windows)'.dependencies]
-ansi-escapes = "0.2.0"
-ansi_term = "0.12.1"
+openssl = { version = "0.10.68", features = ["vendored"] }
